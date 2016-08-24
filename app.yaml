@@ -1,0 +1,120 @@
+application: lezhincomix-backoffice
+version: v16.08.24.15.20
+runtime: python27
+automatic_scaling:
+  min_idle_instances: 1
+  max_idle_instances: automatic
+  min_pending_latency: 30ms
+  max_pending_latency: automatic
+  max_concurrent_requests: 50
+instance_class: F2
+api_version: 1
+threadsafe: yes
+default_expiration: 5s
+skip_files:
+  - '^.git/.*'
+  - '^.idea/.*'
+  - '^.sass-cache/.*'
+  - '^..temp/.*'
+  - '^build/.*'
+  - '^doc/.*'
+  - '^mock/.*'
+  - '^scripts/.*'
+  - '^node_modules/*'
+  - '^src/.*'
+  - '^test/.*'
+  - '^electron/.*'
+  - '^build/.*'
+  - dist/.DS_Store
+handlers:
+  -
+    url: /favicon\.ico
+    static_files: favicon.ico
+    upload: favicon\.ico
+    expiration: 30d
+  -
+    url: '/fonts/(.*\.woff2)'
+    static_files: dist/fonts/\1
+    upload: 'dist/fonts/(.*\.woff2)'
+    mime_type: application/x-font-woff2
+    expiration: 30d
+  -
+    url: '/(.*\.js)'
+    static_files: dist/\1
+    upload: 'dist/(.*\.js)'
+    mime_type: text/javascript;charset=UTF-8
+    expiration: 30d
+  -
+    url: '/(.*\.tpl\.html)'
+    static_files: dist/\1
+    upload: 'dist/(.*\.tpl\.html)'
+    expiration: 30d
+  -
+    url: '/(.*\.css)'
+    static_files: dist/\1
+    upload: 'dist/(.*\.css)'
+    expiration: 30d
+  -
+    url: /
+    static_files: dist/index.html
+    upload: dist/index.html
+    secure: always
+  -
+    url: '/app/admin(/?)'
+    static_files: dist/app/admin/index.html
+    upload: dist/app/admin/index.html
+    secure: always
+  -
+    url: '/app/cms(/?)'
+    static_files: dist/app/cms/index.html
+    upload: dist/app/cms/index.html
+    secure: always
+  -
+    url: '/app/cs(/?)'
+    static_files: dist/app/cs/index.html
+    upload: dist/app/cs/index.html
+    secure: always
+  -
+    url: '/app/etc(/?)'
+    static_files: dist/app/etc/index.html
+    upload: dist/app/etc/index.html
+    secure: always
+  -
+    url: '/app/lab(/?)'
+    static_files: dist/app/lab/index.html
+    upload: dist/app/lab/index.html
+    secure: always
+  -
+    url: '/app/management(/?)'
+    static_files: dist/app/management/index.html
+    upload: dist/app/management/index.html
+    secure: always
+  -
+    url: '/app/management_v1(/?)'
+    static_files: dist/app/management_v1/index.html
+    upload: dist/app/management_v1/index.html
+    secure: always
+  -
+    url: '/app/member(/?)'
+    static_files: dist/app/member/index.html
+    upload: dist/app/member/index.html
+    secure: always
+  -
+    url: '/app/statistics(/?)'
+    static_files: dist/app/statistics/index.html
+    upload: dist/app/statistics/index.html
+    secure: always
+  -
+    url: '/app/partner(/?)'
+    static_files: dist/app/partner/index.html
+    upload: dist/app/partner/index.html
+    secure: always
+  -
+    url: '/(.*)'
+    static_files: dist/\1
+    upload: 'dist/.*'
+    secure: always
+libraries:
+  -
+    name: webapp2
+    version: latest
