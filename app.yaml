@@ -1,5 +1,5 @@
 application: lezhincomix-backoffice
-version: v16.08.24.15.21
+version: v16.08.24.15.22
 runtime: python27
 automatic_scaling:
   min_idle_instances: 1
