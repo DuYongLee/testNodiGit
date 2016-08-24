@@ -23,8 +23,11 @@ fs.writeFileSync('./app.yaml', yaml.stringify(app, 4, 2));
 fs.writeFileSync('./appPartner.yaml', yaml.stringify(appPartner, 4, 2));
 
 Git.Repository.open('./').then(repo => {
-  return repo.createCommitOnHead(['gitTest.js'], Git.Signature.default(repo), Git.Signature.default(repo), 'test').then(oid => {
-    repo.getCommit(oid);
+  repo.index().then(function(index){
+    index.addAll();
+  // })
+  // return repo.createCommitOnHead(null, Git.Signature.default(repo), Git.Signature.default(repo), 'test').then(oid => {
+  //   repo.getCommit(oid);
   }).then(commit => {
     repo.getCurrentBranch().then(reference => {
       currentBranchName = reference.name();
